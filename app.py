@@ -35,7 +35,7 @@ init_db()
 @app.route("/")
 def home():
 
-    conn = sqlite3.connect("/tmp/customers.db")
+    conn = sqlite3.connect("DB_PATH")
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
@@ -57,7 +57,7 @@ def add_page():
 @app.route("/save", methods=["POST"])
 def save():
 
-    conn = sqlite3.connect("customers.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -86,7 +86,7 @@ def search():
 
     text = request.args.get("search", "").strip().lower()
 
-    conn = sqlite3.connect("customers.db")
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
@@ -104,7 +104,7 @@ def area_view(area_name):
 
     area_name = unquote(area_name)
 
-    conn = sqlite3.connect("customers.db")
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
@@ -120,7 +120,7 @@ def area_view(area_name):
 @app.route("/edit/<int:customer_id>", methods=["GET", "POST"])
 def edit(customer_id):
 
-    conn = sqlite3.connect("customers.db")
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
@@ -158,7 +158,7 @@ def edit(customer_id):
 @app.route("/delete/<int:customer_id>")
 def delete(customer_id):
 
-    conn = sqlite3.connect("customers.db")
+    conn = sqlite3.connect("DB_PATH")
     cursor = conn.cursor()
 
     cursor.execute("DELETE FROM customers WHERE id=?", (customer_id,))
