@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from urllib.parse import unquote
 import sqlite3
-
+DB_PATH = "/tmp/customers.db"
 
 app = Flask(__name__)
 
