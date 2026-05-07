@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>عملاء {{ area }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>عملاء منطقة: {{ area }}</h1>
+
+    <a href="/">⬅ رجوع</a>
+
+    <hr>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>الاسم</th>
+            <th>الهاتف</th>
+            <th>المنطقة</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+        </tr>
+
+        {% for c in customers %}
+
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.name }}</td>
+            <td>{{ c.phone }}</td>
+            <td>{{ c.area }}</td>
+
+            <td><a href="/edit/{{ c.id }}">تعديل</a></td>
+            <td><a href="/delete/{{ c.id }}">حذف</a></td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>

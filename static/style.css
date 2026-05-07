@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+    color: #1f2937;
+}
+
+/* container */
+.container {
+    width: 92%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* title */
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+/* cards (forms) */
+form {
+    background: #ffffff;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+}
+
+/* inputs */
+input, select, textarea {
+    width: 180px;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #3b82f6;
+}
+
+/* button */
+button {
+    padding: 8px 14px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #2563eb;
+}
+
+/* links (areas) */
+a {
+    display: inline-block;
+    margin: 4px;
+    padding: 6px 10px;
+    background: #10b981;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+a:hover {
+    background: #059669;
+}
+
+/* table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+/* header */
+th {
+    background: #111827;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* cells */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #f1f5f9;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* hover row */
+tr:hover {
+    background: #f9fafb;
+}
+
+/* delete button inside table */
+td a {
+    background: #ef4444;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+td a:hover {
+    background: #dc2626;
+}

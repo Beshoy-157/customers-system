@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>إضافة عميل</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>➕ إضافة عميل جديد</h1>
+
+        <form action="/save" method="POST">
+
+            <input name="name" placeholder="👤 الاسم الكامل">
+            <input name="phone" placeholder="📞 رقم الهاتف">
+            <input name="address" placeholder="📍 العنوان">
+
+            <select name="area">
+                {% for area in areas %}
+                    <option value="{{ area }}">{{ area }}</option>
+                {% endfor %}
+            </select>
+
+            <input name="debt" placeholder="💰 الآجل">
+
+            <select name="status">
+                <option>🟢 عميل حالي</option>
+                <option>🔴 عميل سابق</option>
+            </select>
+
+            <textarea name="notes" placeholder="📝 ملاحظات"></textarea>
+
+            <button type="submit">💾 حفظ العميل</button>
+
+        </form>
+
+        <a href="/" class="back">⬅ رجوع للرئيسية</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

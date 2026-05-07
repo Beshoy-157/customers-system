@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+
+        العملاء
+
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+
+        كل العملاء
+
+    </h1>
+
+    <table border="1">
+
+        <tr>
+
+            <th>رقم العميل</th>
+            <th>الاسم</th>
+            <th>رقم الهاتف</th>
+            <th>الآجل</th>
+            <th>العنوان</th>
+            <th>الحالة</th>
+            <th>ملاحظات</th>
+
+        </tr>
+
+        {% for customer in customers %}
+
+        <tr>
+
+            <td>{{ customer.id }}</td>
+
+            <td>{{ customer.name }}</td>
+
+            <td>{{ customer.phone }}</td>
+
+            <td>{{ customer.debt }}</td>
+
+            <td>{{ customer.address }}</td>
+
+            <td>{{ customer.status }}</td>
+
+            <td>{{ customer.notes }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+
+</html>

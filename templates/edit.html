@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>تعديل عميل</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>تعديل بيانات العميل</h1>
+
+    <form method="POST">
+
+        <!-- 🔥 ID editable -->
+        <input name="id" value="{{ customer.id }}" placeholder="ID">
+
+        <input name="name" value="{{ customer.name }}" placeholder="الاسم">
+        <input name="phone" value="{{ customer.phone }}" placeholder="الهاتف">
+        <input name="address" value="{{ customer.address }}" placeholder="العنوان">
+
+        <select name="area">
+            {% for area in areas %}
+                <option value="{{ area }}"
+                    {% if area == customer.area %}selected{% endif %}>
+                    {{ area }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <input name="debt" value="{{ customer.debt }}" placeholder="الآجل">
+
+        <select name="status">
+            <option {% if customer.status == "عميل حالي" %}selected{% endif %}>عميل حالي</option>
+            <option {% if customer.status == "عميل سابق" %}selected{% endif %}>عميل سابق</option>
+        </select>
+
+        <textarea name="notes" placeholder="ملاحظات">{{ customer.notes }}</textarea>
+
+        <button type="submit">💾 حفظ التعديل</button>
+
+    </form>
+
+    <br>
+
+    <a href="/">⬅ رجوع</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>نظام العملاء</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>نظام العملاء</h1>
+
+<a href="/add">➕ إضافة عميل</a>
+
+<hr>
+
+<!-- ➕ إضافة منطقة -->
+<h3>إضافة منطقة جديدة</h3>
+
+<form action="/add_area" method="POST">
+
+    <input name="area_name" placeholder="اسم المنطقة">
+
+    <button type="submit">إضافة منطقة</button>
+
+</form>
+
+<hr>
+
+<!-- المناطق -->
+<h3>المناطق</h3>
+
+<a href="/">كل العملاء</a>
+
+{% for area in areas %}
+    <a href="/area/{{ area }}">{{ area }}</a>
+{% endfor %}
+
+<hr>
+
+<!-- بحث -->
+<form action="/search">
+    <input name="search" placeholder="بحث عن عميل">
+    <button>بحث</button>
+</form>
+
+<hr>
+
+<!-- الجدول -->
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>الاسم</th>
+    <th>الهاتف</th>
+    <th>العنوان</th>
+    <th>المنطقة</th>
+    <th>الآجل</th>
+    <th>الحالة</th>
+    <th>ملاحظات</th>
+    <th>تعديل</th>
+    <th>حذف</th>
+</tr>
+
+{% for c in customers %}
+
+<tr>
+
+    <td>{{ c.id }}</td>
+    <td>{{ c.name }}</td>
+    <td>{{ c.phone }}</td>
+    <td>{{ c.address }}</td>
+    <td>{{ c.area }}</td>
+    <td>{{ c.debt }}</td>
+    <td>{{ c.status }}</td>
+    <td>{{ c.notes }}</td>
+
+    <td><a href="/edit/{{ c.id }}">تعديل</a></td>
+    <td><a href="/delete/{{ c.id }}">حذف</a></td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
