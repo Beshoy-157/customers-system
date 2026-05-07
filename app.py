@@ -35,7 +35,7 @@ init_db()
 @app.route("/")
 def home():
 
-    conn = sqlite3.connect("customers.db")
+    conn = sqlite3.connect("/tmp/customers.db")
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
@@ -171,4 +171,4 @@ def delete(customer_id):
 
 if __name__ == "__main__":
     import os
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
