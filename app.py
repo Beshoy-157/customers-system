@@ -9,7 +9,7 @@ areas = ["العتبة", "المطرية", "الزاوية", "شبرا"]
 
 # 🔥 إنشاء قاعدة البيانات
 def init_db():
-    conn = sqlite3.connect("customers.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
