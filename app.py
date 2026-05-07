@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from urllib.parse import unquote
 import sqlite3
+import os
+
 DB_PATH = "/tmp/customers.db"
 
 app = Flask(__name__)
@@ -31,11 +33,11 @@ def init_db():
 init_db()
 
 
-# 🏠 الرئيسية (عرض من SQLite)
+# 🏠 الرئيسية
 @app.route("/")
 def home():
 
-    conn = sqlite3.connect("DB_PATH")
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
@@ -47,13 +49,13 @@ def home():
     return render_template("index.html", customers=customers, areas=areas)
 
 
-# ➕ صفحة إضافة
+# ➕ إضافة
 @app.route("/add")
 def add_page():
     return render_template("add.html", areas=areas)
 
 
-# 💾 حفظ عميل (SQLite)
+# 💾 حفظ
 @app.route("/save", methods=["POST"])
 def save():
 
@@ -90,9 +92,12 @@ def search():
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM customers WHERE LOWER(name) LIKE ?", ('%' + text + '%',))
-    customers = cursor.fetchall()
+    cursor.execute(
+        "SELECT * FROM customers WHERE LOWER(name) LIKE ?",
+        ('%' + text + '%',)
+    )
 
+    customers = cursor.fetchall()
     conn.close()
 
     return render_template("index.html", customers=customers, areas=areas)
@@ -158,7 +163,7 @@ def edit(customer_id):
 @app.route("/delete/<int:customer_id>")
 def delete(customer_id):
 
-    conn = sqlite3.connect("DB_PATH")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("DELETE FROM customers WHERE id=?", (customer_id,))
@@ -169,6 +174,7 @@ def delete(customer_id):
     return redirect(url_for("home"))
 
 
+# 🚀 تشغيل السيرفر
 if __name__ == "__main__":
-    import os
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
